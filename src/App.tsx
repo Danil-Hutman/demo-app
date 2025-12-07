@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./App.module.css";
 import Card from "./components/Card";
 import { getCactusList } from "./api";
+import LogoIcon from "./components/LogoIcon";
 
 const App = () => {
   const [products, setProducts] = useState<
@@ -23,6 +24,7 @@ const App = () => {
           </a>
         </div>
         <div className={styles.brand}>
+          <LogoIcon />
           <p className={styles.brandText}>
             Green companions <br />
             for every space

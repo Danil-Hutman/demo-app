@@ -1,0 +1,9 @@
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000000;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+}
