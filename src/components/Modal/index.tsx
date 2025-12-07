@@ -8,9 +8,14 @@ const Modal: React.FC<{
 }> = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
 
+  const stopPropagation = React.useCallback(
+    (e: React.MouseEvent) => e.stopPropagation(),
+    []
+  );
+
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
-      <div className={styles.container} onClick={(e) => e.stopPropagation()}>
+      <div className={styles.container} onClick={stopPropagation}>
         {children}
       </div>
     </div>

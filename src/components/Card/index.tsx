@@ -15,11 +15,13 @@ interface Product {
 
 const Card: React.FC<{ product: Product }> = ({ product }) => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const openModal = React.useCallback(() => setIsOpen(true), []);
+  const closeModal = React.useCallback(() => setIsOpen(false), []);
 
   return (
     <>
-      <article className={styles.card} onClick={() => setIsOpen(true)}>
-        <div className={styles.info}>
+      <article className={styles.card} onClick={openModal}>
+        <div className={styles.header}>
           <Name name={product.name} />
           <Price price={product.price} />
         </div>
@@ -27,7 +29,7 @@ const Card: React.FC<{ product: Product }> = ({ product }) => {
         <Button label="Buy now" />
       </article>
 
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <Modal isOpen={isOpen} onClose={closeModal}>
         <div className={styles.modalHeader}>
           <Name name={product.name} />
         </div>
@@ -41,12 +43,13 @@ const Card: React.FC<{ product: Product }> = ({ product }) => {
             <h3 className={styles.price}>
               Price: <Price price={product.price} />
             </h3>
-
-            <p>{product.description || "No description available."}</p>
+            <p className={styles.description}>
+              {product.description || "No description available."}
+            </p>
           </div>
         </div>
         <div className={styles.modalActions}>
-          <button className={styles.cencel} onClick={() => setIsOpen(false)}>
+          <button className={styles.cencel} onClick={closeModal}>
             Back to the list
           </button>
           <Button label="Buy now" />
