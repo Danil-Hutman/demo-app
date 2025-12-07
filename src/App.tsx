@@ -12,7 +12,7 @@ const App = () => {
   useEffect(() => {
     getCactusList()
       .then(setProducts)
-      .catch(() => setProducts([]));
+      .catch(() => console.error("Failed to fetch cactus list"));
   }, []);
 
   return (
