@@ -1,0 +1,50 @@
+:global(:root) {
+  --max-width: 1200px;
+}
+
+body {
+  background: #f4f4f4;
+}
+
+.content {
+  box-sizing: border-box;
+  max-width: var(--max-width);
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 200px;
+}
+
+.brand {
+  display: flex;
+  font-weight: 500;
+}
+.brandText {
+  font-size: 18px;
+  text-align: left;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  justify-items: stretch;
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 800px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
