@@ -5,13 +5,7 @@ import Price from "../Price";
 import Button from "../Button";
 import cactusImg from "../../assets/cactuses.png";
 import Modal from "../Modal";
-
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-}
+import type { Product } from "../../types";
 
 const Card: React.FC<{ product: Product }> = ({ product }) => {
   const [isOpen, setIsOpen] = React.useState(false);

@@ -1,18 +1,19 @@
-import { useEffect, useState } from "react";
-import styles from "./App.module.css";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "./store/thunks";
+import type { RootState, AppDispatch } from "./store/index";
+import type { Product } from "./types";
 import Card from "./components/Card";
-import { getCactusList } from "./api";
 import LogoIcon from "./components/LogoIcon";
+import styles from "./App.module.css";
 
 const App = () => {
-  const [products, setProducts] = useState<
-    { id: number; name: string; description: string; price: number }[]
-  >([]);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const { data } = useSelector((state: RootState) => state.products);
 
   useEffect(() => {
-    getCactusList()
-      .then(setProducts)
-      .catch(() => console.error("Failed to fetch cactus list"));
+    dispatch(fetchProducts());
   }, []);
 
   return (
@@ -30,7 +31,7 @@ const App = () => {
         </div>
       </header>
       <main className={styles.cardList}>
-        {products.map((p) => (
+        {data.map((p: Product) => (
           <Card key={p.id} product={p} />
         ))}
       </main>
